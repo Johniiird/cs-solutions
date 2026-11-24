@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="LUNA AI product updates and how-to guides prepared by IUNU for Flavorite.">
+<link rel="icon" href="media/favicon-32.png">
+<link rel="apple-touch-icon" href="media/icon-180.png">
+<title>LUNA AI workbook for Flavorite</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: a grower's field manual from IUNU: plain, specific, numbers with units.
+   IDEA: a training workbook: chapters, recorded walkthroughs, a tick box per guide.
+   PICTURE: the recorded LUNA AI screens themselves, framed like a monitor on the bench.
+   COLOUR and TYPE: IUNU brand only: warm dark ground, one amber accent; Space Grotesk + DM Sans.
+   LAYOUT: cover with the flagship walkthrough, sticky chapter links, then video + steps per guide. */
+:root{color-scheme:dark;--bg:#161412;--surface:#211E1B;--inset:#1C1A17;--ink:#F5F3F0;--body:#CFCAC3;--muted:#A19C95;--line:#34302B;--amber:#F4A125;--tint:rgba(244,161,37,.08);--aline:rgba(244,161,37,.55)}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--body);font:16px/1.6 "DM Sans",system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:"Space Grotesk",system-ui,sans-serif;color:var(--ink);font-weight:700;margin:0;text-wrap:balance}
+h1{font-size:clamp(38px,6vw,64px);line-height:1.04}
+h2{font-size:clamp(28px,3.6vw,40px);line-height:1.08}
+h3{font-size:19px;line-height:1.25}
+a{color:var(--amber)}
+.eyebrow{font:500 12px/1 "Space Grotesk",sans-serif;letter-spacing:.32em;text-transform:uppercase;color:var(--amber);margin:0 0 14px}
+.caps{font:500 12px/1.6 "Space Grotesk",sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 max(4vw,16px)}
+.band{padding:clamp(40px,6vw,88px) 0;border-top:1px solid var(--line)}
+.lede{font-size:19px;color:var(--body);max-width:62ch;margin:18px 0 0}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0}
+.top img{height:32px;width:auto;display:block}
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,4vw,56px);align-items:center;padding:clamp(16px,3vw,40px) 0 clamp(40px,6vw,80px)}
+.hero h1 span{display:block;color:var(--amber)}
+.rule{width:56px;height:3px;background:var(--amber);margin:28px 0 14px}
+.stats{display:flex;flex-wrap:wrap;gap:28px;margin-top:30px}
+.stat b{display:block;font:700 34px/1 "Space Grotesk",sans-serif;color:var(--amber)}
+.stat span{font-size:13px;color:var(--muted)}
+.screen{background:var(--inset);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.screen video{display:block;width:100%;aspect-ratio:1280/900;background:#000}
+/* nav */
+nav.chap{position:sticky;top:0;z-index:5;background:rgba(22,20,18,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav.chap .wrap{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav.chap a{flex:none;color:var(--body);text-decoration:none;font:500 14px/1 "DM Sans",sans-serif;padding:18px 12px;border-bottom:2px solid transparent}
+nav.chap a:hover,nav.chap a.on{color:var(--ink);border-color:var(--amber)}
+/* map table */
+.map{width:100%;border-collapse:collapse;margin-top:28px}
+.map th{font:500 12px/1.4 "Space Grotesk",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:left;padding:0 16px 12px 0;border-bottom:1px solid var(--line)}
+.map td{padding:16px 16px 16px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.map td:first-child{color:var(--ink);font-weight:600;width:30%}
+.chip{display:inline-block;font:600 12px/1 "DM Sans",sans-serif;padding:6px 10px;border-radius:999px;border:1px solid var(--line);color:var(--body);white-space:nowrap}
+.chip.live{border-color:var(--aline);color:var(--amber);background:var(--tint)}
+.chip.soon{border-style:dashed}
+/* timeline */
+.tl{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:0}
+.tl li{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;padding:20px 0;border-bottom:1px solid var(--line)}
+.tl time{font:700 16px/1.3 "Space Grotesk",sans-serif;color:var(--ink)}
+.tl ul{margin:0;padding-left:18px}.tl ul li{display:list-item;border:0;padding:3px 0}
+/* guides */
+.gindex{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:28px}
+.gcard{display:flex;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px;color:var(--body);text-decoration:none;min-height:64px}
+.gcard:hover{border-color:var(--aline)}
+.gcard .n,.steps .n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--amber);color:var(--bg);font:700 14px/30px "Space Grotesk",sans-serif;text-align:center}
+.gcard b{color:var(--ink);font-weight:600;font-size:15px;line-height:1.3}
+.gcard .done{margin-left:auto;color:var(--amber);font-size:13px}
+.guide{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(20px,3vw,40px);margin-top:56px;padding:clamp(18px,2.4vw,28px);background:var(--surface);border:1px solid var(--line);border-radius:6px}
+.guide.feature{background:var(--tint);border-color:var(--aline)}
+.guide header{grid-column:1/-1}
+.guide>div{align-self:start}@media(min-width:901px){.guide>div{position:sticky;top:76px}}
+.guide .use{margin:8px 0 0;color:var(--body);max-width:70ch}
+.ctrl{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+button{font:600 14px/1 "DM Sans",sans-serif;min-height:44px;padding:0 16px;border-radius:6px;border:1px solid var(--line);background:var(--inset);color:var(--ink);cursor:pointer}
+button:hover{border-color:var(--aline)}button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+button.tick[aria-pressed=true]{background:var(--amber);color:var(--bg);border-color:var(--amber)}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:4px;align-content:start}
+.steps li{display:flex;gap:12px;align-items:flex-start;padding:10px;border-radius:6px;cursor:pointer;border:1px solid transparent}
+.steps li .n{width:26px;height:26px;line-height:26px;font-size:13px;background:var(--inset);color:var(--muted);border:1px solid var(--line)}
+.steps li.on{background:var(--inset);border-color:var(--line)}
+.steps li.on .n{background:var(--amber);color:var(--bg);border-color:var(--amber)}
+.steps li span{color:var(--body)}.steps li.on span{color:var(--ink)}
+.note{font-size:13px;color:var(--muted);margin-top:10px}
+/* library */
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;align-items:center}
+.tools input{flex:1 1 260px;font:16px "DM Sans",sans-serif;min-height:44px;padding:0 14px;border-radius:6px;border:1px solid var(--line);background:var(--inset);color:var(--ink)}
+.tools button[aria-pressed=true]{border-color:var(--amber);color:var(--amber)}
+.lib{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.card .area{font-size:12px;color:var(--muted)}
+.card p{margin:0;font-size:15px}
+.card a{font-size:14px;margin-top:auto}
+.empty{color:var(--muted);padding:20px 0}
+.hw{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:28px}
+/* progress */
+.prog{display:flex;align-items:center;gap:18px;margin-top:22px}
+.bar{flex:1;height:8px;background:var(--surface);border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--amber);transition:width .4s}
+footer{border-top:1px solid var(--line);padding:36px 0 56px;font-size:14px;color:var(--muted)}
+footer img{height:30px;margin-bottom:14px}
+@media(max-width:900px){.hero,.guide{grid-template-columns:minmax(0,1fr)}.tl li{grid-template-columns:minmax(0,1fr);gap:6px}}
+@media(max-width:600px){.map thead{display:none}.map tr{display:grid;padding:10px 0;border-bottom:1px solid var(--line)}.map td{border:0;padding:4px 0;width:auto!important}.lede{font-size:17px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bar i{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap top"><img src="media/iunu-logo.svg" alt="IUNU"><span class="caps">Prepared for Flavorite · Warragul</span></div>
+
+<header class="wrap hero">
+  <div>
+    <p class="eyebrow">LUNA AI workbook · November 2026</p>
+    <h1>What's new in LUNA AI.<span>And how to use it.</span></h1>
+    <p class="lede">Everything released since the March pause, with a recorded walkthrough and written steps for each workflow. Prepared for Nina Morozenko, Head Grower, Warragul.</p>
+    <div class="rule"></div>
+    <p class="caps">Crop plan simulation · Ask LUNA AI · Reports and alerts · Forecasting · Hardware</p>
+    <div class="stats">
+      <div class="stat"><b>9</b><span>how-to guides</span></div>
+      <div class="stat"><b>49</b><span>recorded steps</span></div>
+      <div class="stat"><b>6</b><span>weekly releases since mid-October</span></div>
+    </div>
+  </div>
+  <div class="screen"><video id="heroVid" src="media/sop-simulate.mp4" poster="media/sop-simulate.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Walkthrough: simulate a crop plan with Let LUNA Decide"></video></div>
+</header>
+
+<nav class="chap" aria-label="Chapters"><div class="wrap">
+  <a href="#changed">What changed</a><a href="#releases">Latest releases</a><a href="#guides">How-to guides</a><a href="#library">Feature library</a><a href="#hardware">Hardware</a><a href="#progress">Your progress</a>
+</div></nav>
+
+<section class="band" id="changed"><div class="wrap">
+  <p class="eyebrow">What changed</p>
+  <h2>Each item from your closeout report, and where LUNA AI is now.</h2>
+  <p class="lede">The left column is taken from the closeout report your team wrote in March. The right column is what the platform does today.</p>
+  <table class="map stack"><thead><tr><th>Closeout item</th><th>LUNA AI today</th><th>Status</th></tr></thead><tbody id="mapRows"></tbody></table>
+</div></section>
+
+<section class="band" id="releases"><div class="wrap">
+  <p class="eyebrow">Latest releases</p>
+  <h2>Six weeks of releases, newest first.</h2>
+  <p class="lede">LUNA AI ships every Monday. These are the changes you will notice in the app since mid-October.</p>
+  <ul class="tl" id="tl"></ul>
+</div></section>
+
+<section class="band" id="guides"><div class="wrap">
+  <p class="eyebrow">How-to guides</p>
+  <h2>Nine guides, each recorded in LUNA AI.</h2>
+  <p class="lede">Each walkthrough plays on its own. Click any step to jump the recording to that screen, and tick a guide once you have tried it.</p>
+  <div class="gindex" id="gindex"></div>
+  <div id="glist"></div>
+  <p class="note">Recorded on IUNU's demo greenhouse, November 2026. Plant data, names and figures on screen are demo data.</p>
+</div></section>
+
+<section class="band" id="library"><div class="wrap">
+  <p class="eyebrow">Feature library</p>
+  <h2>Every feature, in one place.</h2>
+  <p class="lede">Search by name or filter by area. Where a guide covers the feature, the card links to it.</p>
+  <div class="tools"><input id="q" type="search" placeholder="Search features, for example forecast, WhatsApp, draft" aria-label="Search features"><div id="areas" style="display:flex;flex-wrap:wrap;gap:8px"></div></div>
+  <div class="lib" id="lib"></div><p class="empty" id="empty" hidden>No feature matches that search.</p>
+</div></section>
+
+<section class="band" id="hardware"><div class="wrap">
+  <p class="eyebrow">Hardware</p>
+  <h2>Scanning that does not depend on your team's hours.</h2>
+  <p class="lede">The closeout report put scan labour at 32 hours a week. These are the hardware changes built to take that off the crop team.</p>
+  <div class="hw" id="hw"></div>
+</div></section>
+
+<section class="band" id="progress"><div class="wrap">
+  <p class="eyebrow">Your progress</p>
+  <h2>Guides you have tried.</h2>
+  <div class="prog"><div class="bar"><i id="pbar"></i></div><b id="ptext" style="color:var(--ink);font-family:'Space Grotesk'">0 of 9</b></div>
+  <p class="note">Ticks are saved in this browser only.</p>
+</div></section>
+
+<footer><div class="wrap"><img src="media/iunu-logo.svg" alt="IUNU"><div>Prepared for Flavorite by IUNU Customer Success · 24 November 2026<br>John Allen, VP Customer Success · john@iunu.com · +1 206 551 3392</div></div></footer>
+
+<script>
+{
+const MAP=[
+ ["Scan efficiency: 32 hours a week of crop team time on the mast","The autonomous mast drives a scheduled route with no operator, including overnight. Row imaging is about 30% faster on the same pipeline.","Live","live"],
+ ["Crop registration metrics inconsistent","Leaf length, leaf width and leaf area index per row, with the measurement point set per facility to match your manual method. Fruit diameter by truss position, development speed and ripening trend. LUNA Inscribe for side-by-side checks against a calibrator.","Live","live"],
+ ["3-week and 8-week forecasts late","An 8-week outlook every week, daily harvest status, combined forecasts across crop plans, and a backtest on your own history before the forecast goes live.","Live","live"],
+ ["Weekly scheduled report never delivered","Reports you write in plain words and schedule yourself, delivered in-app, by email with PDF, WhatsApp or text, including to people outside LUNA AI.","Live","live"],
+ ["Ask LUNA not production-ready","Ask LUNA AI reads your crop plan, events, metrics and climate. Decision Agents, Let LUNA Decide for crop plan changes, voice mode and a phone web app.","Live","live"],
+ ["Crop care and harvest quality reporting","Labour quality assessments score task execution per row from before and after imaging, set to your own grading standard.","Pilot",""],
+ ["Misset fruit and disease detection","Pest and disease events (rugose, pepino, treatments) are logged on the crop plan and used by Ask LUNA AI as context. Automated detection is not part of this release.","Not released","soon"]
+];
+const TL=[
+ ["Week of 23 Nov",["Reports and Alerts show when each report was created; sort by newest, oldest or next run.","Charts sidebar fully translated in every supported language.","Crops page loads correctly at vine facilities with fractional plant density."]],
+ ["Week of 16 Nov",["Set a crop plan's length (1 to 104 weeks) and extend it by up to 52 weeks with a preview.","Download CSV now exports the full plan: target, forecast and actual for every metric, every week.","Voice mode gives fuller answers, writes long answers into the chat, and ends cleanly when you say goodbye.","Ask LUNA AI is the single assistant across the app."]],
+ ["Week of 9 Nov",["Crop plan list: search, filter, sort, group and duplicate; a warning before publishing a likely duplicate.","Running yield totals against plan in the crop plan grid.","Charts, forecasts and Ask LUNA AI agree on which plan is in effect.","Forecast page opens on one plan; past-week grades load correctly in any time zone."]],
+ ["Week of 2 Nov",["Crop plan drafts: duplicate, compare cell by cell, review and promote to the plan of record.","Voice answers are written into the chat thread as they happen.","Yield edits save for every week of a multi-week edit."]],
+ ["Week of 26 Oct",["Open plans and drafts update when a colleague edits the same plan.","Data tile settings in Edit Report now save.","More reliable answers about locations and crops across facilities."]],
+ ["Week of 19 Oct",["Crop plan change history: every change, who made it, and whether LUNA AI suggested it.","Ask LUNA AI runs, transfers and re-routes report and alert schedules from chat or voice, with your approval first.","Voice mode waits for you when an approval is pending."]]
+];
+const G=[
+ {id:"simulate",v:"sop-simulate",t:"Simulate a crop plan with Let LUNA Decide",u:"Test changes to targets against a goal such as total yield, then apply them or keep them as a named draft beside the plan of record.",feature:1,
+  s:["Open the crop plan from Planning. Weeks with data are coloured against target; the plan runs ahead of the current-week line.","Click Simulate at the top right, then Let LUNA Decide.","The plan enters Simulate mode. LUNA AI analyses it against the plan's goal. Nothing is written yet; Cancel leaves the plan as it was.","Read the analysis: what LUNA AI found, which levers are running off plan, and the changes it proposes. Proposed values show in violet; click one to revert it, or type in Ask LUNA AI to refine the proposal.","Open Apply changes. Apply to crop plan writes the changes (past weeks stay unchanged). Create new draft saves them as a scenario and leaves the plan of record untouched.","Name the draft, for example after the scenario you are testing.","The draft opens with the proposed targets in place. Edit any value as you would on a plan.","Open the versions menu next to the goal to see the plan of record and every draft, each with Compare.","Compare in Grid view: the draft (B) sits above the plan of record (A), filtered to the metrics and weeks that differ.","Switch to Summary: each change with its weeks, the difference, and who made it. Promote the draft when you are ready."]},
+ {id:"ask",v:"sop-ask",t:"Ask LUNA AI about your crop",u:"Ask questions in plain words and get answers built from your own crop plan, metrics, events and climate.",
+  s:["Click the LUNA AI icon in the top bar, or Ask on any page. Past threads are on the left.","Click New thread and type the question the way you would ask your crop advisor. Name the phase, crop or week if it matters.","LUNA AI shows each step it takes: dates, locations, crops, metrics and crop plans.","Read the answer: what moved against the plan, with the values and targets.","Use the icons under the answer to copy it, email it, rate it or play it aloud. Ask a follow-up in the same thread."]},
+ {id:"report",v:"sop-report",t:"Build and schedule your own report",u:"Turn a question you ask every week into a report that arrives on its own, in the channel your team already reads.",
+  s:["Open Decision Agents from any page. Run an agent now, schedule one, or list scheduled reports.","Open Schedule Report or Alert and choose Recurring report.","Give the report a name and choose Custom Report.","Click Help me compose and describe what the report should tell you, in plain words.","LUNA AI looks up your locations, crops and metrics and writes full report instructions.","Edit the instructions as you like. LUNA AI notes anything it had to adapt, for example a metric your site does not record.","Set the cadence: once, daily, weekly, monthly or yearly, at a time in the facility's time zone.","Choose delivery: in-app, email (with PDF), WhatsApp or text. Add colleagues in LUNA AI or people outside it, then Confirm.","View Reports and Alerts lists every schedule with its status and channels. Pause, edit or share from the menu.","Each run also appears in Notifications with a one-line summary."]},
+ {id:"alert",v:"sop-alert",t:"Set a threshold alert",u:"Get told when a metric crosses a line you set, without opening the app.",
+  s:["In Schedule Report or Alert, choose Threshold alert and give it a name.","Click Select a metric and search: crop, labour, harvest and climate metrics are all available.","Choose the comparison: above, below, at or above, or at or below.","Type the value, pick the location and crop, set how often LUNA AI checks, then choose delivery on the next screen."]},
+ {id:"forecast",v:"sop-forecast",t:"Read and adjust the yield forecast",u:"See this week's harvest against forecast and target, the weeks ahead, and the inputs behind the number.",
+  s:["Open Forecast. Blue bars are actual harvest, orange bars are the forecast, dotted lines are the target. Weeks right of the line are the outlook.","Hover a week to see forecast, target and actual in kilograms.","Pick the crop plan from the plan picker.","Tick more than one plan to see their combined forecast.","Click View full controls to set singles or clusters, sample weight, minimum fruit grade and truss location, then save the week's total weight."]},
+ {id:"plantools",v:"sop-plantools",t:"Crop plan tools: extend, history, overlay, metrics",u:"Keep the plan current through the season and see how it has changed.",
+  s:["Open the tools menu (sliders icon) on a crop plan: forecast, settings, extend, version history, overlay, drafts, compare and Download CSV.","Extend crop plan: type the weeks to add and check the new end week before you click Extend.","Version history lists every save with who made it and which weeks it touched.","Click Show changes to see each metric's old and new values, week by week. Restore an earlier version from here.","Overlay past plan shows last season's actuals beside this season's plan, week by week.","Open the side panel to add metrics from the library: crop, labour, harvest, microclimate, climate, irrigation and energy."]},
+ {id:"events",v:"sop-events",t:"Log stages and events on the crop plan",u:"Give LUNA AI the context only your team knows: topping, density changes, whitewash, pests and treatments.",
+  s:["Click a week number in the crop plan to log a stage (first harvest, termination) or an event (density change, whitewash, IPM, labour, or a free-text note).","IPM covers rugose and pepino signs and treatments. Ask LUNA AI reads every logged event when it answers questions about that week."]},
+ {id:"planlist",v:"sop-planlist",t:"Find your way around",u:"Home, Planning and Charts: where everything lives.",
+  s:["Home opens on your facility's own report, with Ask and Decision Agents one click away.","Planning lists every crop plan at the facility, with its progress bar and last edit.","Search plans and drafts by name, variety or phase.","Group the list by species, variety, drafts or goal.","Grouped by variety, each variety gets its own heading.","Charts lists every saved report at the facility. Star the ones you use most.","Year-over-year charts put this season against last season on one axis."]},
+ {id:"voice",v:"",t:"Hey LUNA: voice mode and LUNA AI on your phone",u:"Use Ask LUNA AI on the walkway, hands busy, without going back to the office.",
+  s:["On your phone, open luna.iunu.com/ask and sign in with your LUNA AI login.","Add it to your home screen (iPhone: Share, then Add to Home Screen; Android: menu, then Add to Home screen). It opens like an app.","Tap the voice button at the bottom right of the message box to start a conversation. Talk normally and interrupt whenever you like.","For a long answer, LUNA AI offers to post the full write-up in the chat. Say yes and it appears in the thread.","Schedule a report or change how you receive one by voice. LUNA AI asks for your approval first.","Say goodbye or no thanks to end the session."]}
+];
+const MARKS={"sop-simulate":[2.67,7.13,11.0,15.47,19.93,24.4,28.27,32.13,36.0,40.47],"sop-ask":[2.67,6.53,10.4,14.27,18.13],"sop-report":[2.67,7.13,11.0,14.87,18.73,23.2,27.07,30.93,35.4,39.87],"sop-alert":[2.67,6.53,10.4,14.27],"sop-forecast":[2.67,7.13,11.0,14.87,18.73],"sop-plantools":[2.67,7.13,11.6,15.47,19.33,23.2],"sop-events":[2.67,6.53],"sop-planlist":[2.67,7.13,11.0,14.87,18.73,22.6,26.47]};
+const LIB=[
+ ["Ask LUNA AI","Ask LUNA AI","Questions in plain words, answered from your crop plan, events, metrics and climate, with each step shown.","Live","ask"],
+ ["Decision Agents","Ask LUNA AI","One click from any page: Summarize Crop, Compare Varieties and Update Crop Plan.","Live","report"],
+ ["Let LUNA Decide","Crop plans","LUNA AI proposes crop plan changes against your goal; apply them or save a draft.","Live","simulate"],
+ ["Simulate a change","Crop plans","Set inputs yourself and see the projected impact on the plan.","Coming soon",""],
+ ["Custom reports with Help me compose","Reports and alerts","Describe a report in a sentence; LUNA AI writes the full instructions from your facility's data.","Live","report"],
+ ["Scheduled delivery","Reports and alerts","Once, daily, weekly, monthly or yearly, in-app, by email with PDF, WhatsApp or text, including to people outside LUNA AI.","Live","report"],
+ ["Threshold alerts","Reports and alerts","Any metric, any location, above or below a value, checked on the interval you choose.","Live","alert"],
+ ["Manage schedules by chat or voice","Reports and alerts","Run a report now, hand it to a colleague or change its delivery from Ask LUNA AI, with your approval first.","Live","voice"],
+ ["Notifications","Reports and alerts","Every report run and alert lands in Notifications with a one-line summary.","Live","report"],
+ ["Hey LUNA voice mode","Ask LUNA AI","Continuous voice conversation on phone or desktop; long answers written into the chat.","Live","voice"],
+ ["Phone web app","Ask LUNA AI","Ask LUNA AI at luna.iunu.com/ask, saved to your home screen like an app.","Live","voice"],
+ ["Photo questions","Ask LUNA AI","Attach a photo of a plant or fruit and ask LUNA AI about it alongside the crop data.","Live","ask"],
+ ["Crop plan goals","Crop plans","Each plan carries a goal, such as maximise total yield, that Let LUNA Decide works toward.","Live","simulate"],
+ ["Drafts and scenarios","Crop plans","Keep alternative versions of a plan, switch between them and promote one to the plan of record.","Live","simulate"],
+ ["Compare versions","Crop plans","Grid and summary views of every difference between two versions, with who made each change.","Live","simulate"],
+ ["Version history and restore","Crop plans","Every save recorded with author and weeks touched; restore an earlier version.","Live","plantools"],
+ ["Overlay past plan","Crop plans","Last season's actuals beside this season's plan, week by week.","Live","plantools"],
+ ["Plan length and Extend","Crop plans","Plans of 1 to 104 weeks; extend an active plan by up to 52 weeks with a preview.","Live","plantools"],
+ ["Stages and events","Crop plans","First harvest, termination, density change, whitewash, IPM, labour and free-text notes on any week.","Live","events"],
+ ["Running yield totals","Crop plans","Cumulative actual, forecast and target side by side in the harvest columns.","Live","plantools"],
+ ["Full-plan CSV download","Crop plans","One row per week with every metric's target, forecast and actual.","Live","plantools"],
+ ["Find plans fast","Crop plans","Search, filter, sort, group and favourite crop plans and drafts.","Live","planlist"],
+ ["8-week outlook","Forecasting","Every weekly forecast carries horizons of 1 to 8 weeks.","Live","forecast"],
+ ["Daily harvest status","Forecasting","Rounds, grade, actual and forecast kilograms for each day of the week.","Live","forecast"],
+ ["Combined forecasts","Forecasting","Select several crop plans to see one combined forecast.","Live","forecast"],
+ ["Forecast controls","Forecasting","Singles or clusters, sample fruit weight, minimum grade and truss location.","Live","forecast"],
+ ["Backtest before go-live","Forecasting","The forecaster is run against your historical yield before you rely on it.","Live",""],
+ ["Leaf metrics","Metrics and imaging","Leaf length, leaf width and leaf area index per row, measured at the point your team uses.","Live",""],
+ ["Fruit metrics by truss","Metrics and imaging","King and tail fruit diameter, fruit count and ripening across the harvest truss and the trusses above.","Live",""],
+ ["Metric library","Metrics and imaging","Crop, labour, harvest, microclimate, climate, irrigation and energy metrics in one library.","Live","plantools"],
+ ["Year-over-year charts","Metrics and imaging","This season against last season on one axis, by variety or facility.","Live","planlist"],
+ ["Climate integrations","Metrics and imaging","Priva, Hoogendoorn and Ridder connections, plus a file route for systems without an API.","Live",""],
+ ["LUNA Inscribe","Metrics and imaging","Phone app for manual measurements with plant QR checks and a calibration score per scout.","Live",""],
+ ["Labour quality assessments","Labour","Before and after imaging scores how well each task was done, per row, to your grading standard.","Pilot",""],
+ ["Languages","Platform","The app runs in several languages, including German, Italian and Armenian.","Live",""]
+];
+const HW=[
+ ["Autonomous mast","Built with partner Octiva. Drives a defined route on a schedule with no operator and can scan overnight, so imaging never competes with daytime labour."],
+ ["Faster imaging","Row imaging time is down about 30% on the same pipeline, whether the unit is autonomous or operated."],
+ ["Semi-autonomous upgrades","For sites keeping the trolley-mounted mast: crop shield protectors, an upgraded charger, and a new RFID reader and cabling."],
+ ["Multi-compartment hinge","A hinge lets the mast pass between compartments without disassembly, the door-height issue from the original setup."],
+ ["Spray cart mounting","The mast can ride on a spray cart so imaging happens during a pass the team already makes."],
+ ["Remote health monitoring","Network, camera and disk status are watched from IUNU's side under a defined support protocol, so a unit that stops imaging is caught by IUNU first."]
+];
+const $=s=>document.querySelector(s), esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const chip=(s)=>`<span class="chip ${s==="Live"?"live":s==="Pilot"?"":"soon"}">${esc(s)}</span>`;
+$("#mapRows").innerHTML=MAP.map(r=>`<tr><td>${esc(r[0])}</td><td>${esc(r[1])}</td><td>${chip(r[2])}</td></tr>`).join("");
+$("#tl").innerHTML=TL.map(r=>`<li><time>${esc(r[0])}</time><ul>${r[1].map(x=>`<li>${esc(x)}</li>`).join("")}</ul></li>`).join("");
+$("#hw").innerHTML=HW.map(h=>`<div class="card"><h3>${esc(h[0])}</h3><p>${esc(h[1])}</p></div>`).join("");
+let done={};try{done=JSON.parse(localStorage.getItem("flv-done")||"{}")}catch(e){}
+const save=()=>{try{localStorage.setItem("flv-done",JSON.stringify(done))}catch(e){}};
+const renderIndex=()=>{$("#gindex").innerHTML=G.map((g,i)=>`<a class="gcard" href="#guide-${g.id}"><span class="n">${i+1}</span><b>${esc(g.t)}</b>${done[g.id]?'<span class="done">Tried</span>':""}</a>`).join("");
+ const n=G.filter(g=>done[g.id]).length;$("#pbar").style.width=(n/G.length*100)+"%";$("#ptext").textContent=`${n} of ${G.length}`;};
+$("#glist").innerHTML=G.map((g,i)=>`<article class="guide${g.feature?" feature":""}" id="guide-${g.id}">
+ <header><p class="eyebrow">Guide ${i+1}${g.feature?" · New in November":""}</p><h2 style="font-size:clamp(24px,2.8vw,32px)">${esc(g.t)}.</h2><p class="use">${esc(g.u)}</p></header>
+ <div>${g.v?`<div class="screen"><video data-v="${g.v}" src="media/${g.v}.mp4" poster="media/${g.v}.jpg" muted loop playsinline preload="none" aria-label="Walkthrough: ${esc(g.t)}"></video></div>
+ <div class="ctrl"><button data-play="${g.id}">Pause</button><button class="tick" data-tick="${g.id}" aria-pressed="${!!done[g.id]}">${done[g.id]?"Tried it":"Mark as tried"}</button></div>`:
+ `<div class="card" style="background:var(--inset)"><p class="caps" style="color:var(--amber)">Phone and voice</p><p>Voice and phone use cannot be screen-recorded here. The steps on the right are the full guide.</p><p class="note">Works in the phone's browser; no app store download.</p></div><div class="ctrl"><button class="tick" data-tick="${g.id}" aria-pressed="${!!done[g.id]}">${done[g.id]?"Tried it":"Mark as tried"}</button></div>`}</div>
+ <ol class="steps" data-g="${g.id}">${g.s.map((s,j)=>`<li data-i="${j}" tabindex="0"><span class="n">${j+1}</span><span>${esc(s)}</span></li>`).join("")}</ol>
+</article>`).join("");
+renderIndex();
+const vids=[...document.querySelectorAll("video[data-v]")];
+const io=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(e.isIntersecting){if(!v.dataset.paused)v.play().catch(()=>{})}else v.pause()}),{threshold:.45});
+vids.forEach(v=>io.observe(v));
+vids.forEach(v=>v.addEventListener("timeupdate",()=>{const m=MARKS[v.dataset.v]||[];let k=-1;m.forEach((t,i)=>{if(v.currentTime>=t-.2)k=i});
+ const ol=v.closest(".guide").querySelector(".steps");ol.querySelectorAll("li").forEach((li,i)=>li.classList.toggle("on",i===k));}));
+document.addEventListener("click",e=>{
+ const li=e.target.closest(".steps li");if(li){const v=li.closest(".guide").querySelector("video");if(v){const m=MARKS[v.dataset.v];v.currentTime=(m[+li.dataset.i]||0)+.05;delete v.dataset.paused;v.play().catch(()=>{});const b=li.closest(".guide").querySelector("[data-play]");if(b)b.textContent="Pause";}}
+ const p=e.target.closest("[data-play]");if(p){const v=p.closest(".guide").querySelector("video");if(v.paused){delete v.dataset.paused;v.play().catch(()=>{});p.textContent="Pause"}else{v.dataset.paused=1;v.pause();p.textContent="Play"}}
+ const t=e.target.closest("[data-tick]");if(t){const id=t.dataset.tick;done[id]=!done[id];if(!done[id])delete done[id];save();t.setAttribute("aria-pressed",!!done[id]);t.textContent=done[id]?"Tried it":"Mark as tried";renderIndex();}
+});
+document.addEventListener("keydown",e=>{const li=e.target.closest&&e.target.closest(".steps li");if(li&&(e.key==="Enter"||e.key===" ")){e.preventDefault();li.click()}});
+const areas=["All",...new Set(LIB.map(l=>l[1]))];let area="All";
+$("#areas").innerHTML=areas.map(a=>`<button aria-pressed="${a==="All"}" data-a="${esc(a)}">${esc(a)}</button>`).join("");
+const drawLib=()=>{const q=$("#q").value.trim().toLowerCase();const rows=LIB.filter(l=>(area==="All"||l[1]===area)&&(!q||(l[0]+" "+l[1]+" "+l[2]).toLowerCase().includes(q)));
+ $("#lib").innerHTML=rows.map(l=>`<div class="card"><span class="area">${esc(l[1])}</span><h3>${esc(l[0])}</h3><p>${esc(l[2])}</p><div>${chip(l[3])}</div>${l[4]?`<a href="#guide-${l[4]}">See the guide</a>`:""}</div>`).join("");$("#empty").hidden=rows.length>0;};
+$("#areas").addEventListener("click",e=>{const b=e.target.closest("[data-a]");if(!b)return;area=b.dataset.a;$("#areas").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===b));drawLib();});
+$("#q").addEventListener("input",drawLib);drawLib();
+const links=[...document.querySelectorAll("nav.chap a")];
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id))}),{rootMargin:"-40% 0px -55% 0px"});
+document.querySelectorAll("section.band").forEach(s=>so.observe(s));
+}
+</script>
+</body>
+</html>
