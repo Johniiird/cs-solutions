@@ -164,7 +164,7 @@ const $=s=>document.querySelector(s);
 const gate=$("#gate"),app=$("#app"),form=$("#gform"),inp=$("#gemail"),btn=$("#gbtn"),msg=$("#gmsg"),wait=$("#gwait");
 const device=(()=>{const u=navigator.userAgent;const os=/iPhone/.test(u)?"iPhone":/iPad/.test(u)?"iPad":/Android/.test(u)?"Android":/Mac OS X/.test(u)?"Mac":/Windows/.test(u)?"Windows":"Other";const br=/Edg\//.test(u)?"Edge":/Firefox\//.test(u)?"Firefox":/(Chrome|CriOS)\//.test(u)?"Chrome":/Safari\//.test(u)?"Safari":"Browser";let tz="";try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||""}catch(e){}return [os,br,tz].filter(Boolean).join(" · ")})();
 let email="",KEY=null;
-const call=b=>fetch(EP,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(Object.assign({wb:WBID},b))}).then(r=>r.json());
+const call=b=>{const once=()=>{const ac=new AbortController(),tm=setTimeout(()=>ac.abort(),12000);return fetch(EP,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(Object.assign({wb:WBID},b)),signal:ac.signal}).then(r=>r.json()).finally(()=>clearTimeout(tm))};return once().catch(()=>once()).catch(()=>once())};
 const track=(event,detail)=>{if(!email)return;try{fetch(EP,{method:"POST",mode:"no-cors",keepalive:true,headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({wb:WBID,action:"event",email,event,detail:String(detail||"").slice(0,150),device})}).catch(()=>{})}catch(e){}};
 const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
 const dec=async buf=>{const u=new Uint8Array(buf);return crypto.subtle.decrypt({name:"AES-GCM",iv:u.slice(0,12)},KEY,u.slice(12))};
