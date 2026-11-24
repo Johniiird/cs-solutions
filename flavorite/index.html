@@ -4,14 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="LUNA AI product updates and how-to guides prepared by IUNU for Flavorite.">
+<meta name="description" content="LUNA AI how-to guides from IUNU.">
 <link rel="icon" href="media/favicon-32.png">
 <link rel="apple-touch-icon" href="media/icon-180.png">
-<title>LUNA AI workbook for Flavorite</title>
+<title>LUNA AI workbook</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-<style>
-/* VOICE: a grower's field manual from IUNU: plain, specific, numbers with units.
+<style>/* VOICE: a grower's field manual from IUNU: plain, specific, numbers with units.
    IDEA: a training workbook: chapters, recorded walkthroughs, a tick box per guide.
    PICTURE: the recorded LUNA AI screens themselves, framed like a monitor on the bench.
    COLOUR and TYPE: IUNU brand only: warm dark ground, one amber accent; Space Grotesk + DM Sans.
@@ -123,6 +122,19 @@ footer img{height:30px;margin-bottom:14px}
 .screen.wide video{aspect-ratio:16/9}
 [hidden]{display:none!important}
 @media(prefers-reduced-motion:reduce){.spin{animation-duration:2s}}
+/* template additions: phone frame for voice, tips, badges, map links */
+.phone{width:min(340px,100%);margin:0 auto;padding:12px;border-radius:28px;background:#0E0D0C;border:1px solid var(--line);box-shadow:0 0 0 6px var(--surface)}
+.phone img,.phone video{display:block;width:100%;border-radius:18px;background:#000}
+.phone video{aspect-ratio:9/19.5;object-fit:cover}
+.phone img{aspect-ratio:574/750;object-fit:cover}
+.pnote{text-align:center;margin-top:14px}
+.tips{margin-top:18px;padding:16px 18px;border:1px solid var(--line);border-radius:6px;background:var(--inset)}
+.tips .caps{margin:0 0 8px;color:var(--amber)}
+.tips ul{margin:0;padding-left:18px}.tips li{padding:3px 0;font-size:15px}
+.badge{display:inline-block;margin-left:8px;font:600 11px/1 "DM Sans",sans-serif;letter-spacing:.04em;padding:4px 8px;border-radius:999px;color:var(--bg);background:var(--amber);vertical-align:middle}
+.gcard .badge{margin-left:auto}
+.map td a{white-space:nowrap}
+.guide>div.sc{position:static}
 </style>
 </head>
 <body>
@@ -139,19 +151,19 @@ footer img{height:30px;margin-bottom:14px}
       <button id="gbtn" type="submit">Open workbook</button>
       <p id="gmsg" class="gmsg" role="alert"></p>
     </form>
-    <p class="note">IUNU records sign-ins and which walkthroughs are played, so we can follow up with your team. Trouble signing in? Reply to the email this link came in.</p>
+    <p class="note">IUNU records sign-ins and which walkthroughs are played, so we can follow up with your team. Trouble signing in? Reply to the email this link came in, or write to <a href="mailto:john@iunu.com">john@iunu.com</a>.</p>
   </div>
 </main>
 <div id="app" hidden></div>
 <script>
 (()=>{
-const EP="https://script.google.com/macros/s/AKfycbwqwl6qndSUDDuUExU3XuHzFGUTwx_9RdzZEByLAVJf9lwjfHT3oSUQCHTucb9x9COKDQ/exec",LS="wb-email";
+const EP="https://script.google.com/macros/s/AKfycbwqwl6qndSUDDuUExU3XuHzFGUTwx_9RdzZEByLAVJf9lwjfHT3oSUQCHTucb9x9COKDQ/exec",WBID="flavorite",LS="wb-email";
 const $=s=>document.querySelector(s);
 const gate=$("#gate"),app=$("#app"),form=$("#gform"),inp=$("#gemail"),btn=$("#gbtn"),msg=$("#gmsg"),wait=$("#gwait");
 const device=(()=>{const u=navigator.userAgent;const os=/iPhone/.test(u)?"iPhone":/iPad/.test(u)?"iPad":/Android/.test(u)?"Android":/Mac OS X/.test(u)?"Mac":/Windows/.test(u)?"Windows":"Other";const br=/Edg\//.test(u)?"Edge":/Firefox\//.test(u)?"Firefox":/(Chrome|CriOS)\//.test(u)?"Chrome":/Safari\//.test(u)?"Safari":"Browser";let tz="";try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||""}catch(e){}return [os,br,tz].filter(Boolean).join(" · ")})();
 let email="",KEY=null;
-const call=b=>fetch(EP,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(b)}).then(r=>r.json());
-const track=(event,detail)=>{if(!email)return;try{fetch(EP,{method:"POST",mode:"no-cors",keepalive:true,headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"event",email,event,detail:String(detail||"").slice(0,150),device})}).catch(()=>{})}catch(e){}};
+const call=b=>fetch(EP,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(Object.assign({wb:WBID},b))}).then(r=>r.json());
+const track=(event,detail)=>{if(!email)return;try{fetch(EP,{method:"POST",mode:"no-cors",keepalive:true,headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({wb:WBID,action:"event",email,event,detail:String(detail||"").slice(0,150),device})}).catch(()=>{})}catch(e){}};
 const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
 const dec=async buf=>{const u=new Uint8Array(buf);return crypto.subtle.decrypt({name:"AES-GCM",iv:u.slice(0,12)},KEY,u.slice(12))};
 const blobURL=async(url,type)=>{const r=await fetch(url+".enc");if(!r.ok)throw new Error(r.status);return URL.createObjectURL(new Blob([await dec(await r.arrayBuffer())],{type}))};
@@ -160,7 +172,7 @@ const poster=v=>{if(v.dataset.poster)blobURL(v.dataset.poster,"image/jpeg").then
 const watch=v=>{let t=0,last=null,sent=false;const name=(v.getAttribute("aria-label")||"video").replace(/^(Walkthrough|Film): /,"");
  v.addEventListener("timeupdate",()=>{const c=v.currentTime;if(last!==null&&!v.seeking&&c>last&&c-last<1.5)t+=c-last;last=c;if(!sent&&t>=6){sent=true;track("video",name)}});
  v.addEventListener("seeking",()=>{last=null})};
-window.WB={ensure,track};
+window.WB={ensure,track,blob:blobURL};
 async function open(name){
  const r=await fetch("app.enc",{cache:"no-store"});if(!r.ok)throw new Error(r.status);
  const p=JSON.parse(new TextDecoder().decode(await dec(await r.arrayBuffer())));
@@ -169,7 +181,7 @@ async function open(name){
  new Function(p.js)();
  const vs=[...app.querySelectorAll("video[data-src]")];vs.forEach(v=>{poster(v);watch(v)});
  const pre=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){ensure(e.target).catch(()=>{});pre.unobserve(e.target)}}),{rootMargin:"700px 0px"});
- vs.forEach(v=>pre.observe(v));
+ vs.filter(v=>!v.controls).forEach(v=>pre.observe(v));
  const h=$("#heroVid");if(h)ensure(h).then(()=>h.play().catch(()=>{})).catch(()=>{});
  const so=$("#signout");if(so)so.addEventListener("click",e=>{e.preventDefault();try{localStorage.removeItem(LS)}catch(_){}location.reload()});
  if(location.hash){const t=document.getElementById(decodeURIComponent(location.hash.slice(1)));if(t)t.scrollIntoView()}
@@ -188,6 +200,7 @@ form.addEventListener("submit",e=>{e.preventDefault();const em=inp.value.trim().
 let saved="";try{saved=localStorage.getItem(LS)||""}catch(_){}
 if(saved){inp.value=saved;go("visit",saved)}else{wait.hidden=true;form.hidden=false}
 })();
+
 </script>
 </body>
 </html>

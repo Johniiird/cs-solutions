@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="LUNA AI how-to guides from IUNU.">
+<link rel="icon" href="media/favicon-32.png">
+<link rel="apple-touch-icon" href="media/icon-180.png">
+<title>LUNA AI workbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>/* VOICE: a grower's field manual from IUNU: plain, specific, numbers with units.
+   IDEA: a training workbook: chapters, recorded walkthroughs, a tick box per guide.
+   PICTURE: the recorded LUNA AI screens themselves, framed like a monitor on the bench.
+   COLOUR and TYPE: IUNU brand only: warm dark ground, one amber accent; Space Grotesk + DM Sans.
+   LAYOUT: cover with the flagship walkthrough, sticky chapter links, then video + steps per guide. */
+:root{color-scheme:dark;--bg:#161412;--surface:#211E1B;--inset:#1C1A17;--ink:#F5F3F0;--body:#CFCAC3;--muted:#A19C95;--line:#34302B;--amber:#F4A125;--tint:rgba(244,161,37,.08);--aline:rgba(244,161,37,.55)}
+*{box-sizing:border-box;min-width:0}
+html{scroll-padding-top:72px;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--body);font:16px/1.6 "DM Sans",system-ui,sans-serif;overflow-x:clip}
+h1,h2,h3{font-family:"Space Grotesk",system-ui,sans-serif;color:var(--ink);font-weight:700;margin:0;text-wrap:balance}
+h1{font-size:clamp(38px,6vw,64px);line-height:1.04}
+h2{font-size:clamp(28px,3.6vw,40px);line-height:1.08}
+h3{font-size:19px;line-height:1.25}
+a{color:var(--amber)}
+.eyebrow{font:500 12px/1 "Space Grotesk",sans-serif;letter-spacing:.32em;text-transform:uppercase;color:var(--amber);margin:0 0 14px}
+.caps{font:500 12px/1.6 "Space Grotesk",sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 max(4vw,16px)}
+.band{padding:clamp(40px,6vw,88px) 0;border-top:1px solid var(--line)}
+.lede{font-size:19px;color:var(--body);max-width:62ch;margin:18px 0 0}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0}
+.top img{height:32px;width:auto;display:block}
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,4vw,56px);align-items:center;padding:clamp(16px,3vw,40px) 0 clamp(40px,6vw,80px)}
+.hero h1 span{display:block;color:var(--amber)}
+.rule{width:56px;height:3px;background:var(--amber);margin:28px 0 14px}
+.stats{display:flex;flex-wrap:wrap;gap:28px;margin-top:30px}
+.stat b{display:block;font:700 34px/1 "Space Grotesk",sans-serif;color:var(--amber)}
+.stat span{font-size:13px;color:var(--muted)}
+.screen{background:var(--inset);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.screen video{display:block;width:100%;aspect-ratio:1280/900;background:#000}
+/* nav */
+nav.chap{position:sticky;top:0;z-index:5;background:rgba(22,20,18,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav.chap .wrap{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav.chap a{flex:none;color:var(--body);text-decoration:none;font:500 14px/1 "DM Sans",sans-serif;padding:18px 12px;border-bottom:2px solid transparent}
+nav.chap a:hover,nav.chap a.on{color:var(--ink);border-color:var(--amber)}
+/* map table */
+.map{width:100%;border-collapse:collapse;margin-top:28px}
+.map th{font:500 12px/1.4 "Space Grotesk",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-align:left;padding:0 16px 12px 0;border-bottom:1px solid var(--line)}
+.map td{padding:16px 16px 16px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.map td:first-child{color:var(--ink);font-weight:600;width:30%}
+.chip{display:inline-block;font:600 12px/1 "DM Sans",sans-serif;padding:6px 10px;border-radius:999px;border:1px solid var(--line);color:var(--body);white-space:nowrap}
+.chip.live{border-color:var(--aline);color:var(--amber);background:var(--tint)}
+.chip.soon{border-style:dashed}
+/* timeline */
+.tl{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:0}
+.tl li{display:grid;grid-template-columns:150px minmax(0,1fr);gap:24px;padding:20px 0;border-bottom:1px solid var(--line)}
+.tl time{font:700 16px/1.3 "Space Grotesk",sans-serif;color:var(--ink)}
+.tl ul{margin:0;padding-left:18px}.tl ul li{display:list-item;border:0;padding:3px 0}
+/* guides */
+.gindex{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:28px}
+.gcard{display:flex;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:12px;color:var(--body);text-decoration:none;min-height:64px}
+.gcard:hover{border-color:var(--aline)}
+.gcard .n,.steps .n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--amber);color:var(--bg);font:700 14px/30px "Space Grotesk",sans-serif;text-align:center}
+.gcard b{color:var(--ink);font-weight:600;font-size:15px;line-height:1.3}
+.gcard .done{margin-left:auto;color:var(--amber);font-size:13px}
+.guide{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(20px,3vw,40px);margin-top:56px;padding:clamp(18px,2.4vw,28px);background:var(--surface);border:1px solid var(--line);border-radius:6px}
+.guide.feature{background:var(--tint);border-color:var(--aline)}
+.guide header{grid-column:1/-1}
+.guide>div{align-self:start}@media(min-width:901px){.guide>div{position:sticky;top:76px}}
+.guide .use{margin:8px 0 0;color:var(--body);max-width:70ch}
+.ctrl{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+button{font:600 14px/1 "DM Sans",sans-serif;min-height:44px;padding:0 16px;border-radius:6px;border:1px solid var(--line);background:var(--inset);color:var(--ink);cursor:pointer}
+button:hover{border-color:var(--aline)}button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+button.tick[aria-pressed=true]{background:var(--amber);color:var(--bg);border-color:var(--amber)}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:4px;align-content:start}
+.steps li{display:flex;gap:12px;align-items:flex-start;padding:10px;border-radius:6px;cursor:pointer;border:1px solid transparent}
+.steps li .n{width:26px;height:26px;line-height:26px;font-size:13px;background:var(--inset);color:var(--muted);border:1px solid var(--line)}
+.steps li.on{background:var(--inset);border-color:var(--line)}
+.steps li.on .n{background:var(--amber);color:var(--bg);border-color:var(--amber)}
+.steps li span{color:var(--body)}.steps li.on span{color:var(--ink)}
+.note{font-size:13px;color:var(--muted);margin-top:10px}
+/* library */
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px;align-items:center}
+.tools input{flex:1 1 260px;font:16px "DM Sans",sans-serif;min-height:44px;padding:0 14px;border-radius:6px;border:1px solid var(--line);background:var(--inset);color:var(--ink)}
+.tools button[aria-pressed=true]{border-color:var(--amber);color:var(--amber)}
+.lib{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.card .area{font-size:12px;color:var(--muted)}
+.card p{margin:0;font-size:15px}
+.card a{font-size:14px;margin-top:auto}
+.empty{color:var(--muted);padding:20px 0}
+.hw{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:28px}
+/* progress */
+.prog{display:flex;align-items:center;gap:18px;margin-top:22px}
+.bar{flex:1;height:8px;background:var(--surface);border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--amber);transition:width .4s}
+footer{border-top:1px solid var(--line);padding:36px 0 56px;font-size:14px;color:var(--muted)}
+footer img{height:30px;margin-bottom:14px}
+@media(max-width:900px){.hero,.guide{grid-template-columns:minmax(0,1fr)}.tl li{grid-template-columns:minmax(0,1fr);gap:6px}}
+@media(max-width:600px){.map thead{display:none}.map tr{display:grid;padding:10px 0;border-bottom:1px solid var(--line)}.map td{border:0;padding:4px 0;width:auto!important}.lede{font-size:17px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bar i{transition:none}}
+
+.gate{min-height:100vh;min-height:100dvh;display:grid;place-items:center;padding:32px 20px;background:radial-gradient(900px 600px at 85% -10%,rgba(244,161,37,.14),transparent 60%),var(--bg)}
+.gbox{width:min(460px,100%)}
+.glogo{height:34px;width:auto;display:block;margin-bottom:44px}
+.gate h1{font-size:clamp(30px,4.6vw,42px);line-height:1.08}
+.gate .lede{font-size:17px;margin:12px 0 28px}
+#gform{display:grid;gap:10px}
+#gform input{font:17px "DM Sans",system-ui,sans-serif;min-height:52px;padding:0 16px;border-radius:6px;border:1px solid var(--line);background:var(--inset);color:var(--ink)}
+#gform input:focus{border-color:var(--amber);outline:none}
+#gform button{min-height:52px;background:var(--amber);border-color:var(--amber);color:var(--bg);font-size:16px}
+#gform button[disabled]{opacity:.6;cursor:wait}
+.gmsg{min-height:1.5em;margin:2px 0 0;color:#F2B868;font-size:14px}
+.gwait{display:flex;gap:12px;align-items:center;color:var(--body);margin:4px 0 8px}
+.spin{width:18px;height:18px;flex:none;border-radius:50%;border:2px solid var(--line);border-top-color:var(--amber);animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.gate .note{margin-top:30px;line-height:1.5}
+.top .tr{display:flex;flex-direction:column;align-items:flex-end;gap:4px;text-align:right}
+.who{font-size:13px;color:var(--muted)}.who a{color:var(--amber)}
+.screen.wide video{aspect-ratio:16/9}
+[hidden]{display:none!important}
+@media(prefers-reduced-motion:reduce){.spin{animation-duration:2s}}
+/* template additions: phone frame for voice, tips, badges, map links */
+.phone{width:min(340px,100%);margin:0 auto;padding:12px;border-radius:28px;background:#0E0D0C;border:1px solid var(--line);box-shadow:0 0 0 6px var(--surface)}
+.phone img,.phone video{display:block;width:100%;border-radius:18px;background:#000}
+.phone video{aspect-ratio:9/19.5;object-fit:cover}
+.phone img{aspect-ratio:574/750;object-fit:cover}
+.pnote{text-align:center;margin-top:14px}
+.tips{margin-top:18px;padding:16px 18px;border:1px solid var(--line);border-radius:6px;background:var(--inset)}
+.tips .caps{margin:0 0 8px;color:var(--amber)}
+.tips ul{margin:0;padding-left:18px}.tips li{padding:3px 0;font-size:15px}
+.badge{display:inline-block;margin-left:8px;font:600 11px/1 "DM Sans",sans-serif;letter-spacing:.04em;padding:4px 8px;border-radius:999px;color:var(--bg);background:var(--amber);vertical-align:middle}
+.gcard .badge{margin-left:auto}
+.map td a{white-space:nowrap}
+.guide>div.sc{position:static}
+</style>
+</head>
+<body>
+<main id="gate" class="gate">
+  <div class="gbox">
+    <img class="glogo" src="media/iunu-logo.svg" alt="IUNU">
+    <p class="eyebrow">LUNA AI workbook</p>
+    <h1>Sign in to your workbook.</h1>
+    <p class="lede">Enter the work email this link was sent to.</p>
+    <div id="gwait" class="gwait"><span class="spin" aria-hidden="true"></span><span>Opening your workbook…</span></div>
+    <form id="gform" novalidate hidden>
+      <label class="caps" for="gemail">Work email</label>
+      <input id="gemail" type="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" placeholder="name@company.com" required>
+      <button id="gbtn" type="submit">Open workbook</button>
+      <p id="gmsg" class="gmsg" role="alert"></p>
+    </form>
+    <p class="note">IUNU records sign-ins and which walkthroughs are played, so we can follow up with your team. IUNU staff only. Sign in with your iunu.com email.</p>
+  </div>
+</main>
+<div id="app" hidden></div>
+<script>
+(()=>{
+const EP="https://script.google.com/macros/s/AKfycbwqwl6qndSUDDuUExU3XuHzFGUTwx_9RdzZEByLAVJf9lwjfHT3oSUQCHTucb9x9COKDQ/exec",WBID="template",LS="wb-email:template";
+const $=s=>document.querySelector(s);
+const gate=$("#gate"),app=$("#app"),form=$("#gform"),inp=$("#gemail"),btn=$("#gbtn"),msg=$("#gmsg"),wait=$("#gwait");
+const device=(()=>{const u=navigator.userAgent;const os=/iPhone/.test(u)?"iPhone":/iPad/.test(u)?"iPad":/Android/.test(u)?"Android":/Mac OS X/.test(u)?"Mac":/Windows/.test(u)?"Windows":"Other";const br=/Edg\//.test(u)?"Edge":/Firefox\//.test(u)?"Firefox":/(Chrome|CriOS)\//.test(u)?"Chrome":/Safari\//.test(u)?"Safari":"Browser";let tz="";try{tz=Intl.DateTimeFormat().resolvedOptions().timeZone||""}catch(e){}return [os,br,tz].filter(Boolean).join(" · ")})();
+let email="",KEY=null;
+const call=b=>fetch(EP,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(Object.assign({wb:WBID},b))}).then(r=>r.json());
+const track=(event,detail)=>{if(!email)return;try{fetch(EP,{method:"POST",mode:"no-cors",keepalive:true,headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({wb:WBID,action:"event",email,event,detail:String(detail||"").slice(0,150),device})}).catch(()=>{})}catch(e){}};
+const b64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+const dec=async buf=>{const u=new Uint8Array(buf);return crypto.subtle.decrypt({name:"AES-GCM",iv:u.slice(0,12)},KEY,u.slice(12))};
+const blobURL=async(url,type)=>{const r=await fetch(url+".enc");if(!r.ok)throw new Error(r.status);return URL.createObjectURL(new Blob([await dec(await r.arrayBuffer())],{type}))};
+const ensure=v=>v.__p||(v.__p=blobURL(v.dataset.src,"video/mp4").then(u=>{v.src=u}).catch(e=>{v.__p=null;throw e}));
+const poster=v=>{if(v.dataset.poster)blobURL(v.dataset.poster,"image/jpeg").then(u=>{if(!v.poster)v.poster=u}).catch(()=>{})};
+const watch=v=>{let t=0,last=null,sent=false;const name=(v.getAttribute("aria-label")||"video").replace(/^(Walkthrough|Film): /,"");
+ v.addEventListener("timeupdate",()=>{const c=v.currentTime;if(last!==null&&!v.seeking&&c>last&&c-last<1.5)t+=c-last;last=c;if(!sent&&t>=6){sent=true;track("video",name)}});
+ v.addEventListener("seeking",()=>{last=null})};
+window.WB={ensure,track,blob:blobURL};
+async function open(name){
+ const r=await fetch("app.enc",{cache:"no-store"});if(!r.ok)throw new Error(r.status);
+ const p=JSON.parse(new TextDecoder().decode(await dec(await r.arrayBuffer())));
+ app.innerHTML=p.html;gate.hidden=true;app.hidden=false;
+ const w=$("#who");if(w)w.textContent="Signed in as "+name;
+ new Function(p.js)();
+ const vs=[...app.querySelectorAll("video[data-src]")];vs.forEach(v=>{poster(v);watch(v)});
+ const pre=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){ensure(e.target).catch(()=>{});pre.unobserve(e.target)}}),{rootMargin:"700px 0px"});
+ vs.filter(v=>!v.controls).forEach(v=>pre.observe(v));
+ const h=$("#heroVid");if(h)ensure(h).then(()=>h.play().catch(()=>{})).catch(()=>{});
+ const so=$("#signout");if(so)so.addEventListener("click",e=>{e.preventDefault();try{localStorage.removeItem(LS)}catch(_){}location.reload()});
+ if(location.hash){const t=document.getElementById(decodeURIComponent(location.hash.slice(1)));if(t)t.scrollIntoView()}
+}
+function fail(text,em){email="";form.hidden=false;wait.hidden=true;btn.disabled=false;if(em)inp.value=em;msg.textContent=text;inp.focus()}
+async function go(action,em){
+ email=em;msg.textContent="";btn.disabled=true;wait.hidden=false;form.hidden=action==="visit";
+ let r;
+ try{r=await call({action,email:em,device})}catch(e){return fail("Couldn't reach the sign-in service. Check your connection and try again.",em)}
+ if(!r||!r.ok){try{localStorage.removeItem(LS)}catch(_){}
+  return fail(r&&r.error==="not_allowed"?"That email isn't set up for this workbook. Check the spelling, or ask John Allen to add you.":r&&r.error==="bad_email"?"Enter your full work email address.":"Something went wrong on our side. Try again in a minute.",em)}
+ try{KEY=await crypto.subtle.importKey("raw",b64(r.key),"AES-GCM",false,["decrypt"]);try{localStorage.setItem(LS,em)}catch(_){}await open(r.name)}
+ catch(e){fail("The workbook didn't load. Refresh the page and try again.",em)}
+}
+form.addEventListener("submit",e=>{e.preventDefault();const em=inp.value.trim().toLowerCase();if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){msg.textContent="Enter your full work email address.";inp.focus();return}go("login",em)});
+let saved="";try{saved=localStorage.getItem(LS)||""}catch(_){}
+if(saved){inp.value=saved;go("visit",saved)}else{wait.hidden=true;form.hidden=false}
+})();
+
+</script>
+</body>
+</html>
