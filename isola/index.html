@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="it">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
-<meta name="description" content="LUNA AI how-to guides from IUNU.">
+<meta name="description" content="Guide pratiche LUNA AI di IUNU.">
 <link rel="icon" href="media/favicon-32.png">
 <link rel="apple-touch-icon" href="media/icon-180.png">
-<title>LUNA AI workbook</title>
+<title>Manuale LUNA AI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 <style>/* VOICE: a grower's field manual from IUNU: plain, specific, numbers with units.
@@ -143,17 +143,17 @@ footer img{height:30px;margin-bottom:14px}
 <main id="gate" class="gate">
   <div class="gbox">
     <img class="glogo" src="media/iunu-logo.svg" alt="IUNU">
-    <p class="eyebrow">LUNA AI workbook</p>
-    <h1>Sign in to your workbook.</h1>
-    <p class="lede">Enter the work email this link was sent to.</p>
-    <div id="gwait" class="gwait"><span class="spin" aria-hidden="true"></span><span>Opening your workbook…</span></div>
+    <p class="eyebrow">Manuale LUNA AI</p>
+    <h1>Accedi al tuo manuale.</h1>
+    <p class="lede">Inserisci l'email di lavoro a cui è stato inviato questo link.</p>
+    <div id="gwait" class="gwait"><span class="spin" aria-hidden="true"></span><span>Apertura del manuale…</span></div>
     <form id="gform" novalidate hidden>
-      <label class="caps" for="gemail">Work email</label>
-      <input id="gemail" type="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" placeholder="name@company.com" required>
-      <button id="gbtn" type="submit">Open workbook</button>
+      <label class="caps" for="gemail">Email di lavoro</label>
+      <input id="gemail" type="email" autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" placeholder="nome@azienda.it" required>
+      <button id="gbtn" type="submit">Apri il manuale</button>
       <p id="gmsg" class="gmsg" role="alert"></p>
     </form>
-    <p class="note">IUNU records sign-ins and which walkthroughs are played, so we can follow up with your team. Trouble signing in? Write to <a href="mailto:yvanderlaan@iunu.com">yvanderlaan@iunu.com</a>.</p>
+    <p class="note">IUNU registra gli accessi e quali video vengono riprodotti, per poter seguire il tuo team. Problemi di accesso? Scrivi a <a href="mailto:yvanderlaan@iunu.com">yvanderlaan@iunu.com</a>.</p>
   </div>
 </main>
 <div id="app" hidden></div>
@@ -171,7 +171,7 @@ const dec=async buf=>{const u=new Uint8Array(buf);return crypto.subtle.decrypt({
 const blobURL=async(url,type)=>{const r=await fetch(url+".enc");if(!r.ok)throw new Error(r.status);return URL.createObjectURL(new Blob([await dec(await r.arrayBuffer())],{type}))};
 const ensure=v=>v.__p||(v.__p=blobURL(v.dataset.src,"video/mp4").then(u=>{v.src=u}).catch(e=>{v.__p=null;throw e}));
 const poster=v=>{if(v.dataset.poster)blobURL(v.dataset.poster,"image/jpeg").then(u=>{if(!v.poster)v.poster=u}).catch(()=>{})};
-const watch=v=>{let t=0,last=null,sent=false;const name=(v.getAttribute("aria-label")||"video").replace(/^(Walkthrough|Film): /,"");
+const watch=v=>{let t=0,last=null,sent=false;const name=v.dataset.name||(v.getAttribute("aria-label")||"video").replace(/^[^:]+: /,"");
  v.addEventListener("timeupdate",()=>{const c=v.currentTime;if(last!==null&&!v.seeking&&c>last&&c-last<1.5)t+=c-last;last=c;if(!sent&&t>=6){sent=true;track("video",name)}});
  v.addEventListener("seeking",()=>{last=null})};
 window.WB={ensure,track,blob:blobURL};
@@ -179,7 +179,7 @@ async function open(name){
  const r=await fetch("app.enc",{cache:"no-store"});if(!r.ok)throw new Error(r.status);
  const p=JSON.parse(new TextDecoder().decode(await dec(await r.arrayBuffer())));
  app.innerHTML=p.html;gate.hidden=true;app.hidden=false;
- const w=$("#who");if(w)w.textContent="Signed in as "+name;
+ const w=$("#who");if(w)w.textContent="Accesso effettuato come "+name;
  new Function(p.js)();
  const vs=[...app.querySelectorAll("video[data-src]")];vs.forEach(v=>{poster(v);watch(v)});
  const pre=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){ensure(e.target).catch(()=>{});pre.unobserve(e.target)}}),{rootMargin:"700px 0px"});
@@ -192,13 +192,13 @@ function fail(text,em){email="";form.hidden=false;wait.hidden=true;btn.disabled=
 async function go(action,em){
  email=em;msg.textContent="";btn.disabled=true;wait.hidden=false;form.hidden=action==="visit";
  let r;
- try{r=await call({action,email:em,device})}catch(e){return fail("Couldn't reach the sign-in service. Check your connection and try again.",em)}
+ try{r=await call({action,email:em,device})}catch(e){return fail("Impossibile raggiungere il servizio di accesso. Controlla la connessione e riprova.",em)}
  if(!r||!r.ok){try{localStorage.removeItem(LS)}catch(_){}
-  return fail(r&&r.error==="not_allowed"?"That email isn't set up for this workbook. Check the spelling, or ask Yoeri van der Laan to add you.":r&&r.error==="bad_email"?"Enter your full work email address.":"Something went wrong on our side. Try again in a minute.",em)}
+  return fail(r&&r.error==="not_allowed"?"Questa email non è abilitata per questo manuale. Controlla che sia scritta correttamente o chiedi a Yoeri van der Laan di aggiungerti.":r&&r.error==="bad_email"?"Inserisci l'indirizzo email di lavoro completo.":"Si è verificato un problema da parte nostra. Riprova tra un minuto.",em)}
  try{KEY=await crypto.subtle.importKey("raw",b64(r.key),"AES-GCM",false,["decrypt"]);try{localStorage.setItem(LS,em)}catch(_){}await open(r.name)}
- catch(e){fail("The workbook didn't load. Refresh the page and try again.",em)}
+ catch(e){fail("Il manuale non si è caricato. Aggiorna la pagina e riprova.",em)}
 }
-form.addEventListener("submit",e=>{e.preventDefault();const em=inp.value.trim().toLowerCase();if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){msg.textContent="Enter your full work email address.";inp.focus();return}go("login",em)});
+form.addEventListener("submit",e=>{e.preventDefault();const em=inp.value.trim().toLowerCase();if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)){msg.textContent="Inserisci l'indirizzo email di lavoro completo.";inp.focus();return}go("login",em)});
 let saved="";try{saved=localStorage.getItem(LS)||""}catch(_){}
 if(saved){inp.value=saved;go("visit",saved)}else{wait.hidden=true;form.hidden=false}
 })();
